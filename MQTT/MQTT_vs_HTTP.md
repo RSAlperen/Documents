@@ -18,7 +18,7 @@ MQTT is a communication protocol with features specifically targeted at IoT solu
 
 _MQTT Publish / Subscribe Architecture_
 
-The `MQTT` commands are **CONNECT**, **SUBSCRIBE**, **PUBLISH**, **UNSUBSCRIBE** and **DISCONNECT**. `MQTT` Topics are the unit of distribution, to which clients can PUBLISH and SUBSCRIBE. All authorized subscribers to a topic will receive all messages published to it. `MQTT` topics do not have to be predefined: applications can create them simply by using them.
+The `MQTT` commands are **CONNECT**, **SUBSCRIBE**, **PUBLISH**, **UNSUBSCRIBE** and **DISCONNECT**. `MQTT` Topics are the unit of distribution, to which clients can **PUBLISH** and **SUBSCRIBE**. All authorized subscribers to a topic will receive all messages published to it. `MQTT` topics do not have to be predefined: applications can create them simply by using them.
 
 
 ## What is HTTP?
@@ -26,18 +26,20 @@ The `MQTT` commands are **CONNECT**, **SUBSCRIBE**, **PUBLISH**, **UNSUBSCRIBE**
 
     https://www.realsolutions.com.tr/#/home
 
-to which HTTP clients can make requests: GET, PUT, DELETE and POST, to name the most common. In a normal web environment the simple model is a web browser retrieving web pages from a server with the GET method:
+to which `HTTP` clients can make requests: **GET**, **PUT**, **DELETE** and **POST**, to name the most common. In a normal web environment the simple model is a web browser retrieving web pages from a server with the GET method:
 
 <img src="img/mqtt-vs-http-in-iot-get-method-web-server.png">
 
 _HTTP GET Method_
 
-
-In an IoT environment, a common use of HTTP is to allow devices to POST to a resource that represents the device state on the IoT service:
+---
+In an IoT environment, a common use of `HTTP` is to allow devices to **POST** to a resource that represents the device state on the IoT service:
 
 <img src="img/mqtt-vs-http-in-iot-service.png">
 
 _HTTP protocol in IoT_
+
+---
 
 ## MQTT and HTTP Comparison Summary
 
@@ -60,7 +62,7 @@ Reliability | Three qualities of service: **0** - fire and forget, **1** - at le
 
 ## MQTT Performance vs HTTP Performance in IoT
 
-There are many different ways of measuring performance, one example, which compares MQTT and HTTP methods of connecting to Google IoT Core. First of all, TCP message overhead
+There are many different ways of measuring performance, one example, which compares `MQTT` and `HTTP` methods of connecting to Google IoT Core. First of all, `TCP` message overhead
 
 Başlık | MQTT Bytes  |   HTTP Bytes
 --     | --          | --
@@ -69,7 +71,7 @@ Disconnect | 376 (optional) | 0
 For each message published | 388 | 3285
 Sum for 1 message |  6336 | 5546
 Sum for 10 messages | 9829 | 55,460
-Sum for 100 messages | Sum for 100 messages | 554,600
+Sum for 100 messages | 44,748 | 554,600
 
 
 The connection establishment figure for `MQTT` is larger because of the **MQTT CONNECT** packet exchange after the `TCP` connection is completed. The equivalent “`overhead`” for `HTTP` has to be included with every request which is why the per message overhead is much bigger.
@@ -107,12 +109,3 @@ The principal advantage of `HTTP` for use in IoT is its familiarity to developer
 ## MQTT vs. HTTP – Which is Better for IoT?
 
 As `MQTT` was designed for IoT solutions it fits many more IoT scenarios than `HTTP`. The only case where `HTTP` might be a valid choice is to connect devices which already have an `HTTP` client installed to a provider which has an `HTTP` option. But then only for low volume data transmission, and without the option of sending control commands to the device.
-
-## Conclusion
-If you are familiar with `HTTP` and are wondering what `MQTT` can offer you then check out these resources:
-
-* `MQTT` Essentials Series
-* HiveMQ’s open source software
-* HiveMQ’s free public `MQTT` broker
-* Other `MQTT` client libraries
-* `MQTT` 5 (the latest version of `MQTT`) Essentials Series
