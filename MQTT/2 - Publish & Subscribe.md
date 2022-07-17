@@ -1,6 +1,6 @@
 ## The publish/subscribe pattern
 
-The publish/subscribe pattern (also known as pub/sub) provides an alternative to traditional client-server architecture. In the client-sever model, a client communicates directly with an endpoint.The pub/sub model **decouples the client that sends a message (the publisher) from the client or clients that receive the messages (the subscribers).** The publishers and subscribers never contact each other directly. In fact, they are not even aware that the other exists. **The connection between them is handled by a third component (the broker).** The job of the broker is to filter all incoming messages and distribute them correctly to subscribers. So, let’s dive a little deeper into some of the general aspects of pub/sub (we’ll talk about MQTT specifics in a minute).
+The publish/subscribe pattern (also known as pub/sub) provides an alternative to traditional client-server architecture. In the client-sever model, a client communicates directly with an endpoint.The pub/sub model **decouples the client that sends a message (the publisher) from the client or clients that receive the messages (the subscribers).** The publishers and subscribers never contact each other directly. In fact, they are not even aware that the other exists. **The connection between them is handled by a third component (the broker).** The job of the broker is to filter all incoming messages and distribute them correctly to subscribers.
 
 <img src="img/mqtt-publish-subscribe.svg">
 
@@ -17,7 +17,7 @@ In summary, the pub/sub model removes direct communication between the publisher
 
 ## Scalability
 
-**Pub/Sub scales better than the traditional client-server approach.** This is because operations on the broker can be highly parallelized and messages can be processed in an event-driven way. Message caching and intelligent routing of messages are often a decisive factors for improving scalability. Nonetheless, scaling up to millions of connections is a challenge. Such a high level of connections can be achieved with clustered broker nodes to distribute the load over more individual servers using load balancers. (This topic is beyond the scope of the current article, we’ll cover it in a separate post).
+**Pub/Sub scales better than the traditional client-server approach.** This is because operations on the broker can be highly parallelized and messages can be processed in an event-driven way. Message caching and intelligent routing of messages are often a decisive factors for improving scalability. Nonetheless, scaling up to millions of connections is a challenge. Such a high level of connections can be achieved with clustered broker nodes to distribute the load over more individual servers using load balancers.
 
 ## Message filtering
 
@@ -47,7 +47,7 @@ Now that we’ve explored the publish/subscribe model in general, let’s focus 
 
 Another thing that should be mentioned is that MQTT is especially easy to use on the client-side. Most pub/sub systems have the logic on the broker-side, but MQTT is really the essence of pub/sub when using a client library and that makes it a light-weight protocol for small and constrained devices.
 
-**MQTT uses subject-based filtering of messages. Every message contains a topic (subject)** that the broker can use to determine whether a subscribing client gets the message or not. See part 5 of MQTT Essentials to learn more about the concept of topics. If desired, you can also set up content-based filtering with the HiveMQ MQTT broker and our custom extension system.
+**MQTT uses subject-based filtering of messages. Every message contains a topic (subject)** that the broker can use to determine whether a subscribing client gets the message or not.
 
 To handle the challenges of a pub/sub system, **MQTT has three Quality of Service (QoS) levels.** You can easily specify that a message gets successfully delivered from the client to the broker or from the broker to a client. However, there is the chance that nobody subscribes to the particular topic. If this is a problem, the broker must know how to handle the situation. You can have the broker take action or simply log every message into a database for historical analyses. To keep the hierarchical topic tree flexible, it is important to design the topic tree very carefully and leave room for future use cases. **If you follow these strategies, MQTT is perfect for production setups.**
 
